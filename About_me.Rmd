@@ -10,4 +10,4 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # Christopher "Todd" Garner - Southern Methodist University - Master of Science in Data Science
-![Christopher "Todd" Garner](https:\\C:\Users\tgarn\OneDrive\Desktop\SMU - MS Data Science\Courses\GitHub\DS_6306_weekly_assignments\Week_12\First_Website\Test_Website_1\Test Website 1\About_Me\SMU-DataHub.github.io\About Me\images\Todd_Garner.jpg)
+![Christopher "Todd" Garner]()
