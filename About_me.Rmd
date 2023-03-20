@@ -9,9 +9,20 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Christopher "Todd" Garner  
-## BS Engineering Physics - Texas Tech University
-## MBA - Finance & Entrepreneurship - Rice University
-## Master of Science in Data Science - Southern Methodist University (*enrolled*)
+# Christopher "Todd" Garner
 
 ![Christopher "Todd" Garner](%22https://github.com/SMU-DataHub/SMU-DataHub.github.io/blob/main/images/Todd_Garner.jpg%22)
+
+### From: Dallas, Texas, USA
+
+### Interests: Data Science, Crypto, Crypto Tax Software, Electronic Music ![Electronic Music](%22https://soundcloud.com/quantum2013/freeway-jamming-quantdrop?in=quantum2013/sets/quantdrop%22), Dogs, Music, Baseball, Women
+
+### Work: SK Advisory Group ![Sk Advisory Group](%22http://www.skadvisory.us%22)
+
+### Education:
+
+### BS Engineering Physics - Texas Tech University ![Texas Tech Engineering](%22https://media-exp1.licdn.com/dms/image/C4E0BAQFSoS3_qz3gQQ/company-logo_200_200/0?e=2159024400&v=beta&t=K8MzZ-2W2nkld9RjxMhEfd6wNMVCe1u3XDlhzSJb_lU%22)
+
+### MBA - Finance & Entrepreneurship - Rice University ![Rice Business](%22https://cgsm.org/wp-content/uploads/2017/07/Rice-I-Business-logo-w-tag-full-final_JGSB.jpg%22)
+
+### Master of Science in Data Science - Southern Methodist University (*currently enrolled*) ![SMU MSDS](%22https://www.onlinecoursereport.com/wp-content/uploads/2017/06/smu_data_science.jpg%22)
