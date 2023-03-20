@@ -9,5 +9,9 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Christopher "Todd" Garner - Southern Methodist University - Master of Science in Data Science
-![Christopher "Todd" Garner]()
+# Christopher "Todd" Garner  
+## BS Engineering Physics - Texas Tech University
+## MBA - Finance & Entrepreneurship - Rice University
+## Master of Science in Data Science - Southern Methodist University (*enrolled*)
+
+![Christopher "Todd" Garner](%22https://github.com/SMU-DataHub/SMU-DataHub.github.io/blob/main/images/Todd_Garner.jpg%22)
