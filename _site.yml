@@ -8,3 +8,7 @@ navbar:
       href: CLT_2.html
     - text: "About Me"
       href: About_me.html
+      
+      theme: jekyll-theme-minimal
+      title: Todd Garner's homepage
+      description: Bookmark this to keep an eye on my project updates!
