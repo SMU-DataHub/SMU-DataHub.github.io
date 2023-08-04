@@ -17,7 +17,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### Interests: Data Science, Crypto, Crypto Tax Software, Electronic Music ![Electronic Music](%22https://soundcloud.com/quantum2013/freeway-jamming-quantdrop?in=quantum2013/sets/quantdrop%22), Dogs, Music, Baseball, Women
 
-### Work: SK Advisory Group ![Sk Advisory Group](%22http://www.skadvisory.us%22)
+### Work: W3F CryptoTax Solutions ![W3F](%22http://www.w3fcryptotax.com%22)
 
 ### Education:
 
