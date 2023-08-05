@@ -6,9 +6,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
-
   <meta name="author" content="Christopher &quot;Todd&quot; Garner" />
-
   <meta name="date" content="Posted 2023-03-20" />
 
   <title>Welcome to my personal website</title>
@@ -21,6 +19,15 @@
   <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
   <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
   <style>
+    #canvas2 {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
     h1 {
       font-size: 34px;
     }
@@ -58,230 +65,185 @@
       background-color: white
     }
   </style>
-  <script src="site_libs/navigation-1.1/tabsets.js"></script>
-  <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
-  <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+ <style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
 
-  <style type="text/css">
-    code {
-      white-space: pre-wrap;
-    }
 
-    span.smallcaps {
-      font-variant: small-caps;
-    }
 
-    span.underline {
-      text-decoration: underline;
-    }
 
-    div.column {
-      display: inline-block;
-      vertical-align: top;
-      width: 50%;
-    }
 
-    div.hanging-indent {
-      margin-left: 1.5em;
-      text-indent: -1.5em;
-    }
 
-    ul.task-list {
-      list-style: none;
-    }
-  </style>
 
-  <style type="text/css">
-    code {
-      white-space: pre;
-    }
-  </style>
-  <script type="text/javascript">
-    if (window.hljs) {
-      hljs.configure({
-        languages: []
-      });
-      hljs.initHighlightingOnLoad();
-      if (document.readyState && document.readyState === "complete") {
-        window.setTimeout(function () {
-          hljs.initHighlighting();
-        }, 0);
-      }
-    }
-  </script>
-  <style type="text/css">
-    .main-container {
-      max-width: 940px;
-      margin-left: auto;
-      margin-right: auto;
-    }
 
-    img {
-      max-width: 100%;
-    }
 
-    .tabbed-pane {
-      padding-top: 12px;
-    }
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
 
-    .html-widget {
-      margin-bottom: 20px;
-    }
 
-    button.code-folding-btn:focus {
-      outline: none;
-    }
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
 
-    summary {
-      display: list-item;
-    }
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
 
-    details>summary>p:only-child {
-      display: inline;
-    }
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
-    pre code {
-      padding: 0;
-    }
-  </style>
-  <style type="text/css">
-    .dropdown-submenu {
-      position: relative;
-    }
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
 
-    .dropdown-submenu>.dropdown-menu {
-      top: 0;
-      left: 100%;
-      margin-top: -6px;
-      margin-left: -1px;
-      border-radius: 0 6px 6px 6px;
-    }
+<!-- tabsets -->
 
-    .dropdown-submenu:hover>.dropdown-menu {
-      display: block;
-    }
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
 
-    .dropdown-submenu>a:after {
-      display: block;
-      content: " ";
-      float: right;
-      width: 0;
-      height: 0;
-      border-color: transparent;
-      border-style: solid;
-      border-width: 5px 0 5px 5px;
-      border-left-color: #cccccc;
-      margin-top: 5px;
-      margin-right: -10px;
-    }
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
 
-    .dropdown-submenu:hover>a:after {
-      border-left-color: #adb5bd;
-    }
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
 
-    .dropdown-submenu.pull-left {
-      float: none;
-    }
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
 
-    .dropdown-submenu.pull-left>.dropdown-menu {
-      left: -100%;
-      margin-left: 10px;
-      border-radius: 6px 0 6px 6px;
-    }
-  </style>
-  <script type="text/javascript">
-    // manage active state of menu based on current page
-    $(document).ready(function () {
-      // active menu anchor
-      href = window.location.pathname
-      href = href.substr(href.lastIndexOf('/') + 1)
-      if (href === "")
-        href = "index.html";
-      var menuAnchor = $('a[href="' + href + '"]');
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
 
-      // mark the anchor link active (and if it's in a dropdown, also mark that active)
-      var dropdown = menuAnchor.closest('li.dropdown');
-      if (window.bootstrap) { // Bootstrap 4+
-        menuAnchor.addClass('active');
-        dropdown.find('> .dropdown-toggle').addClass('active');
-      } else { // Bootstrap 3
-        menuAnchor.parent().addClass('active');
-        dropdown.addClass('active');
-      }
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
 
-      // Navbar adjustments
-      var navHeight = $(".navbar").first().height() + 15;
-      var style = document.createElement('style');
-      var pt = "padding-top: " + navHeight + "px; ";
-      var mt = "margin-top: -" + navHeight + "px; ";
-      var css = "";
-      // offset scroll position for anchor links (for fixed navbar)
-      for (var i = 1; i <= 6; i++) {
-        css += ".section h" + i + "{ " + pt + mt + "}\n";
-      }
-      style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
-      document.head.appendChild(style);
-    });
-  </script>
-
-  <!-- tabsets -->
-
-  <style type="text/css">
-    .tabset-dropdown>.nav-tabs {
-      display: inline-table;
-      max-height: 500px;
-      min-height: 44px;
-      overflow-y: auto;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-    }
-
-    .tabset-dropdown>.nav-tabs>li.active:before,
-    .tabset-dropdown>.nav-tabs.nav-tabs-open:before {
-      content: "\e259";
-      font-family: 'Glyphicons Halflings';
-      display: inline-block;
-      padding: 10px;
-      border-right: 1px solid #ddd;
-    }
-
-    .tabset-dropdown>.nav-tabs.nav-tabs-open>li.active:before {
-      content: "\e258";
-      font-family: 'Glyphicons Halflings';
-      border: none;
-    }
-
-    .tabset-dropdown>.nav-tabs>li.active {
-      display: block;
-    }
-
-    .tabset-dropdown>.nav-tabs>li>a,
-    .tabset-dropdown>.nav-tabs>li>a:focus,
-    .tabset-dropdown>.nav-tabs>li>a:hover {
-      border: none;
-      display: inline-block;
-      border-radius: 4px;
-      background-color: transparent;
-    }
-
-    .tabset-dropdown>.nav-tabs.nav-tabs-open>li {
-      display: block;
-      float: none;
-    }
-
-    .tabset-dropdown>.nav-tabs>li {
-      display: none;
-    }
-  </style>
-
-  <!-- code folding -->
-
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
 </head>
 
 <body>
+  <canvas id="canvas2"></canvas>
 
   <div class="container-fluid main-container">
-    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
@@ -291,7 +253,6 @@
           </button>
           <a class="navbar-brand" href="index.html">Todd's Website</a>
         </div>
-
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li>
@@ -308,16 +269,24 @@
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-
           </ul>
-        </div><!--/.nav-collapse -->
-      </div><!--/.container -->
-    </div><!--/.navbar -->
+        </div>
+        <!--/.nav-collapse -->
+      </div>
+      <!--/.container -->
+    </div>
+    <!--/.navbar -->
 
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
     <div id="header">
+
       <h1 class="title toc-ignore">Todd's personal website</h1>
       <h4 class="author">Christopher "Todd" Garner</h4>
       <h4 class="date">Posted 2023-03-20</h4>
+
     </div>
 
     <div id="simple-yet-awesome-web-site" class="section level1">
@@ -340,6 +309,7 @@
         </div>
       </div>
     </div>
+
   </div>
 
   <script>
@@ -368,6 +338,7 @@
 
   <!-- code folding -->
 
+
   <!-- dynamically load mathjax for compatibility with self-contained -->
   <script>
     (function () {
@@ -378,6 +349,122 @@
     })();
   </script>
 
+  <script>
+    let w, h;
+    let resizeReset = function () {
+      w = canvasBody.width = window.innerWidth;
+      h = canvasBody.height = window.innerHeight;
+    };
+
+    const opts = {
+      particleColor: "rgb(0,0,0)",
+      lineColor: "rgb(0,0,0)",
+      particleAmount: 30,
+      defaultSpeed: 1,
+      variantSpeed: 1,
+      defaultRadius: 2,
+      variantRadius: 2,
+      linkRadius: 200,
+    };
+
+    window.addEventListener("resize", function () {
+      deBouncer();
+    });
+
+    let deBouncer = function () {
+      clearTimeout(tid);
+      tid = setTimeout(function () {
+        resizeReset();
+      }, delay);
+    };
+
+    let checkDistance = function (x1, y1, x2, y2) {
+      return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+    };
+
+    let linkPoints = function (point1, hubs) {
+      for (let i = 0; i < hubs.length; i++) {
+        let distance = checkDistance(point1.x, point1.y, hubs[i].x, hubs[i].y);
+        let opacity = 1 - distance / opts.linkRadius;
+        if (opacity > 0) {
+          drawArea.lineWidth = 0.5;
+          drawArea.strokeStyle = `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, ${opacity})`;
+          drawArea.beginPath();
+          drawArea.moveTo(point1.x, point1.y);
+          drawArea.lineTo(hubs[i].x, hubs[i].y);
+          drawArea.closePath();
+          drawArea.stroke();
+        }
+      }
+    };
+
+    let Particle = function (xPos, yPos) {
+      this.x = Math.random() * w;
+      this.y = Math.random() * h;
+      this.speed = opts.defaultSpeed + Math.random() * opts.variantSpeed;
+      this.directionAngle = Math.floor(Math.random() * 360);
+      this.color = opts.particleColor;
+      this.radius = opts.defaultRadius + Math.random() * opts.variantRadius;
+      this.vector = {
+        x: Math.cos(this.directionAngle) * this.speed,
+        y: Math.sin(this.directionAngle) * this.speed
+      };
+      this.update = function () {
+        this.border();
+        this.x += this.vector.x;
+        this.y += this.vector.y;
+      };
+      this.border = function () {
+        if (this.x >= w || this.x <= 0) {
+          this.vector.x *= -1;
+        }
+        if (this.y >= h || this.y <= 0) {
+          this.vector.y *= -1;
+        }
+        if (this.x > w) this.x = w;
+        if (this.y > h) this.y = h;
+        if (this.x < 0) this.x = 0;
+        if (this.y < 0) this.y = 0;
+      };
+      this.draw = function () {
+        drawArea.beginPath();
+        drawArea.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        drawArea.closePath();
+        drawArea.fillStyle = this.color;
+        drawArea.fill();
+      };
+    };
+
+    let setup = function () {
+      particles = [];
+      resizeReset();
+      for (let i = 0; i < opts.particleAmount; i++) {
+        particles.push(new Particle());
+      }
+      window.requestAnimationFrame(loop);
+    };
+
+    let loop = function () {
+      window.requestAnimationFrame(loop);
+      drawArea.clearRect(0, 0, w, h);
+      for (let i = 0; i < particles.length; i++) {
+        particles[i].update();
+        particles[i].draw();
+      }
+      for (let i = 0; i < particles.length; i++) {
+        linkPoints(particles[i], particles);
+      }
+    };
+
+    const canvasBody = document.getElementById("canvas2"),
+      drawArea = canvasBody.getContext("2d");
+    let delay = 200,
+      tid,
+      rgb = opts.lineColor.match(/\d+/g);
+    resizeReset();
+    setup();
+  </script>
 </body>
+
 </html>
 
