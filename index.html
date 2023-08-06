@@ -268,8 +268,9 @@ $(document).ready(function () {
               <a href="video_CS1.html">Case Study 1</a>
             </li>
             <li>
-              <a href="#cloud-miners">Cloud Miners</a>
+              <a href="javascript:void(0);" onclick="showCloudMiners()">Cloud Miners</a>
             </li>
+
           </ul>
 
 
@@ -475,6 +476,15 @@ $(document).ready(function () {
     resizeReset();
     setup();
   </script>
+  <script>
+   function showCloudMiners() {
+     // Hide all tab content
+     $('.tab-pane').removeClass('in active');
+     // Show the Cloud Miners tab content
+     $('#cloud-miners').addClass('in active');
+    }
+  </script>
+
 </body>
 
 </html>
